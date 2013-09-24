@@ -49,7 +49,7 @@ public class DataProvider {
     }
 
     public static String buildFinalUpgradeBuildingStringFromStringArray(String func, int sheetNum, String[][] content) {
-        String buildedContent = DataParse.parseData(content);
+        String buildedContent = DataParse.parseData(content, "upgradeBuilding.httl");
         return buildedContent;
     }
 }

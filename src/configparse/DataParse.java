@@ -4,14 +4,13 @@
  */
 package configparse;
 
-import httl.Engine;
-import httl.Template;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import httl.*;
+import java.io.*;
+import java.net.InetAddress;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.logging.*;
 import jxl.read.biff.BiffException;
 
 /**
@@ -37,26 +36,35 @@ public class DataParse {
     }
 
     /**
-     * 
+     *
      * @param content
-     * @return 
+     * @param tplFileName
+     * @return
      */
-    public static String parseData(String[][] content) {
-        int rows = content.length;
+    public static String parseData(String[][] content, String tplFileName) {
+        int rowCount = content.length;
         String[] itemExtendLangModel = getModelNamesFromStringArray(content);
-        String buildedContent = "";
+        String buildedContent;
         Map fieldMapping = FileProcessor.fieldMapping(itemExtendLangModel);
-        for (int row = 1; row < rows; row++) {//去掉表头
-            buildedContent += parseRow(content[row], itemExtendLangModel, fieldMapping);
+        boolean isLastestRow = false;
+        for (int row = 1; row < rowCount; row++) {//去掉表头
+            if (row == rowCount - 1) {
+                isLastestRow = true;
+            }
+            parseRow(content[row], itemExtendLangModel, fieldMapping, isLastestRow);
         }
+        if (finalInfo.isEmpty()) {
+
+        }
+        buildedContent = parseDataToString(tplFileName);
         return buildedContent;
     }
     public static Map atom;//一个完整的配置(不能再分)
     public static String[] latestRowData;//上次处理的数据
     public static int atomCount = 0;//完整的配置的个数
+    public static List finalInfo = new ArrayList();//整理好之后的数据
 
-    public static String parseRow(String[] content, String[] itemExtendLangModel, Map fieldMapping) {
-        String buildedContent = "";
+    public static void parseRow(String[] content, String[] itemExtendLangModel, Map fieldMapping, boolean isLastestRow) {
         ArrayList levelDistribution = (ArrayList) fieldMapping.get("levelDistribution");
         if (latestRowData == null) {
             latestRowData = new String[itemExtendLangModel.length];
@@ -64,12 +72,11 @@ public class DataParse {
 
         if (!content[0].equals(latestRowData[0]) || atom == null) {
             if (atom != null) {
-                buildedContent = parseDataToString(atom, fieldMapping);
+                finalInfo.add(atom);
             }
             latestRowData = new String[itemExtendLangModel.length];
             atom = new HashMap();
         }
-
 
         for (int i = 1, size = levelDistribution.size(); i < size; i++) {//不计数第0个
             Map levelDistributionLH = (Map) levelDistribution.get(i);
@@ -94,67 +101,91 @@ public class DataParse {
             }
         }
         latestRowData = content;
-        return buildedContent;
+
+        if (isLastestRow) {//最后一次调用
+            finalInfo.add(atom);
+        }
     }
     public static Map<String, Object> parameters;
-    public static Properties prop;
+    public static Properties properties;
     public static Engine engine;
     public static Template tpl;
+
+    public static String parseDataToString(String tplFileName) {
+        String content = "";
+        try {
+            if (parameters == null) {
+                parameters = new HashMap<String, Object>();
+                properties = new Properties();
+                FileInputStream fis = new FileInputStream("./httl.properties");
+                properties.load(fis);
+                engine = Engine.getEngine(properties);
+                tpl = engine.getTemplate(tplFileName);
+            }
+            parameters.put("finalInfo", finalInfo);
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(new Date());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat timeFormat = new SimpleDateFormat("H:m:s");
+            parameters.put("dateString", dateFormat.format(calendar.getTime()));
+            parameters.put("timeString", timeFormat.format(calendar.getTime()));
+
+            String ip, address;
+            InetAddress addr;
+            addr = InetAddress.getLocalHost();
+            ip = addr.getHostAddress().toString();//获得本机IP　　
+            address = addr.getHostName().toString();//获得本机名称
+            parameters.put("ip", ip);
+            parameters.put("address", address);
+            String tmp = (String) tpl.evaluate(parameters);
+            content = tmp;
+            System.out.println("tmp : " + tmp);
+        } catch (IOException e) {
+            System.out.println("IOException : " + e.getMessage());
+        } catch (ParseException e) {
+            System.out.println("ParseException : " + e.getMessage());
+        }
+        return content;
+    }
 
     /**
      * 解析规则 TODO
      *
      * @param atom
      * @return
+     *
+     * public static String parseDataToString(Map atom, Map fieldMapping) {
+     * String content = ""; try { if (parameters == null) { parameters = new
+     * HashMap<String, Object>(); properties = new Properties(); FileInputStream
+     * fis = new FileInputStream("./httl.properties"); properties.load(fis);
+     * engine = Engine.getEngine(properties); tpl =
+     * engine.getTemplate("/upgradeBuilding.httl"); } ArrayList levelZeroList =
+     * (ArrayList) (atom.get(1)); String[] levelZeroArray = (String[])
+     * (levelZeroList.get(0)); ArrayList levelZeroListFinal = new ArrayList();
+     * for (int i = 0; i < levelZeroArray.length; i++) {
+     * levelZeroListFinal.add(levelZeroArray[i]); }
+     *
+     * ArrayList levelOneList = (ArrayList) (atom.get(2)); String[]
+     * levelOneArray = (String[]) (levelOneList.get(0)); ArrayList
+     * levelOneListFinal = new ArrayList(); for (int i = 0; i <
+     * levelOneArray.length; i++) { levelOneListFinal.add(levelOneArray[i]); }
+     *
+     * ArrayList levelTwoList = (ArrayList) (atom.get(3));
+     *
+     * parameters.put("levelZeroList", levelZeroListFinal);
+     * parameters.put("levelOneList", levelOneListFinal);
+     * parameters.put("levelTwoList", levelTwoList); // parameters.put("atom",
+     * atom); String tmp = (String) tpl.evaluate(parameters); content = tmp;
+     * System.out.println("tmp : " + tmp); } catch (Exception e) {
+     * System.out.println("e : " + e.getMessage()); }
+     *
+     * return content; }
      */
-    public static String parseDataToString(Map atom, Map fieldMapping) {
-        String content = "";
-        try {
-            if (parameters == null) {
-                parameters = new HashMap<String, Object>();
-                prop = new Properties();
-                FileInputStream fis = new FileInputStream("./httl.properties");
-                prop.load(fis);
-                engine = Engine.getEngine(prop);
-                tpl = engine.getTemplate("./upgradeBuilding.httl");
-            }
-            /*
-            ArrayList levelZeroList = (ArrayList) (atom.get(1));
-            String[] levelZeroArray = (String[]) (levelZeroList.get(0));
-            ArrayList levelZeroListFinal = new ArrayList();
-            for(int i = 0; i< levelZeroArray.length;i++) {
-                levelZeroListFinal.add(levelZeroArray[i]);
-            }
-            
-            ArrayList levelOneList = (ArrayList) (atom.get(2));
-            String[] levelOneArray = (String[]) (levelOneList.get(0));
-            ArrayList levelOneListFinal = new ArrayList();
-            for(int i = 0; i< levelOneArray.length;i++) {
-                levelOneListFinal.add(levelOneArray[i]);
-            }
-            
-            
-            ArrayList levelTwoList = (ArrayList) (atom.get(3));
-            
-            parameters.put("levelZeroList", levelZeroListFinal);
-            parameters.put("levelOneList", levelOneListFinal);
-            parameters.put("levelTwoList", levelTwoList);
-            */
-            parameters.put("atom", atom);
-            String tmp = (String) tpl.evaluate(parameters);
-            content = tmp;
-            System.out.println("tmp : " + tmp);
-        } catch (Exception e) {
-        }
-
-        return content;
-    }
-
-    
     /**
-     * 
+     *
      * @param content
-     * @return 
+     * @return
      */
     public static String[] getModelNamesFromStringArray(String[][] content) {
         String[] model;
@@ -188,7 +219,6 @@ public class DataParse {
         ruleMap.put("atom", atomRuleAtom);
         ruleMap.put("endWith", atomRuleEndWith);
         map.put("1", ruleMap);
-
 
         String virtualRuleBenginWith, virtualRuleAtom, virtualRuleEndWith;
         virtualRuleBenginWith = "'virtual' => array(\n";

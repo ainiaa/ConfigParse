@@ -1,26 +1,54 @@
-#set(List levelZeroList, List levelOneList, List levelTwoList)
-'${levelZeroList[0]}' => array(
-    'virtual' => array(
-        'nextLvItemId' => '${levelOneList[0]}',
-        'uGold' => '${levelOneList[1]}',
-        'jumpGold' => '${levelOneList[2]}',
-        'uCash' => '${levelOneList[3]}',
-     #if(levelOneList[4] == "0")
-        'unlock' => array(),
-     #else
-        'unlock' => array(levelOneList[4]),
-     #end
-        'unitPrice' => '${levelOneList[5]}',
-        'times' => '${levelOneList[6]}',
-        'uLevel' => '${levelOneList[7]}',
+/**
+* 可升级建筑相关配置
+* author: Jeff Liu
+* Date: ${dateString}
+* Time: ${timeString}
+* IP: ${ip}
+* transformor: ${address}
+*  '13' => array(
+*  'require_item_id' => array(//所需物品ID
+*          'requireItemId' => 11,//所需物品ID
+*          'uGold' => 'reqest',//获得方式 request, feed, storage, unknown
+*          'jumpGold' => 1,//所需数量
+*          'uCash' => 0,//
+*      ),
+*      'virtual' => array(//其他条件
+*          'uCash' => 0,//需要另外花费的Cash
+*          'uGold' => 0,//需要另外花费的Gold
+*          'uLevel' => 1,//需要达到的等级
+*          'totalGold' => 30,//快速完成需要的花费的gold数量
+*          'nextLvItemId' => 14,//下级ID
+*          'unlock' => array(1572, 1573),//解锁物品id*          'unitPrice' => 2,//解锁单价*          'times'  => 2//倍数*      ),
+*  ),
+*/
+$J7CONFIG['upgradeBuildingCfg'] = array(
+#set(List finalInfo, List levelZeroList, List levelOneList, List levelTwoList, String[] finalLevelZeroStringArray, String[] finalLevelOneStringArray, finalInfo)
+#for(HashMap atomInfo : finalInfo)
+    #set(levelZeroList = atomInfo[1], levelOneList = atomInfo[2], levelTwoList = atomInfo[3], finalLevelZeroStringArray = levelZeroList[0], finalLevelOneStringArray = levelOneList[0])
+    '${finalLevelZeroStringArray[0]}' => array(
+        'virtual' => array(
+            'nextLvItemId' => '${finalLevelOneStringArray[0]}',
+            'uGold' => '${finalLevelOneStringArray[1]}',
+            'jumpGold' => '${finalLevelOneStringArray[2]}',
+            'uCash' => '${finalLevelOneStringArray[3]}',
+         #if(finalLevelOneStringArray[4] == "0")
+            'unlock' => array(),
+         #else
+            'unlock' => array(finalLevelOneStringArray[4]),
+         #end
+            'unitPrice' => '${finalLevelOneStringArray[5]}',
+            'times' => '${finalLevelOneStringArray[6]}',
+            'uLevel' => '${finalLevelOneStringArray[7]}',
+        ),
+        #for(String[] requiredItem : levelTwoList)
+        '${requiredItem[0]}' => array(
+            'requireItemId' => '${requiredItem[0]}',
+            'obtainType' => '${requiredItem[1]}',
+            'requireNum' => '${requiredItem[2]}',
+            'requireItemCash' => '${requiredItem[3]}',
+            'requireItemGold' => '${requiredItem[4]}',
+        ),
+        #end
     ),
-    #for(String[] requiredItem : levelTwoList)
-    '${requiredItem[0]}' => array(
-        'requireItemId' => '${requiredItem[0]}',
-        'obtainType' => '${requiredItem[1]}',
-        'requireNum' => '${requiredItem[2]}',
-        'requireItemCash' => '${requiredItem[3]}',
-        'requireItemGold' => '${requiredItem[4]}',
-    ),
-    #end
-),
+#end
+);
