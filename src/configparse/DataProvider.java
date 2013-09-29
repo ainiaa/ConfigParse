@@ -6,7 +6,6 @@ package configparse;
 
 import java.util.*;
 
-
 /**
  *
  * @author Administrator
@@ -17,7 +16,7 @@ public class DataProvider {
         String buildedContent = "";
         if ("UPGRADE_BUILDING".equals(func)) {//建筑升级相关配置
             buildedContent += buildFinalUpgradeBuildingStringFromStringArray(func, sheetNum, content);
-        } 
+        }
         return buildedContent;
     }
 
@@ -46,6 +45,11 @@ public class DataProvider {
         model = new String[i];
         System.arraycopy(content[0], 0, model, 0, i);
         return model;
+    }
+
+    public static String buildFinalUpgradeBuildingStringFromStringArray(String func, int sheetNum, String[][] content, boolean useSingle) {
+        String buildedContent = DataParse.parseData(content, "upgradeBuilding.httl");
+        return buildedContent;
     }
 
     public static String buildFinalUpgradeBuildingStringFromStringArray(String func, int sheetNum, String[][] content) {
