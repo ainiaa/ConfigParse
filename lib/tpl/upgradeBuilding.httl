@@ -22,32 +22,31 @@
 *  ),
 */
 $J7CONFIG['upgradeBuildingCfg'] = array(
-#set(List finalInfo, List levelZeroList, List levelOneList, List levelTwoList, String[] finalLevelZeroStringArray, String[] finalLevelOneStringArray, finalInfo)
+#set(List finalInfo)
 #for(HashMap atomInfo : finalInfo)
-    #set(levelZeroList = atomInfo[1], levelOneList = atomInfo[2], levelTwoList = atomInfo[3], finalLevelZeroStringArray = levelZeroList[0], finalLevelOneStringArray = levelOneList[0])
-    '${finalLevelZeroStringArray[0]}' => array(
+    #set(HashMap levelZeroList = atomInfo["*"], HashMap levelOneList = atomInfo["**"], HashMap levelTwoList = atomInfo["***"], HashMap finalLevelOneList = levelOneList["0"])
+    #set(HashMap levelZeroInfo = levelZeroList["0"], String iid=levelZeroInfo["iId"])
+    '${iid}' => array(
         'virtual' => array(
-            'nextLvItemId' => '${finalLevelOneStringArray[0]}',
-            'uGold' => '${finalLevelOneStringArray[1]}',
-            'jumpGold' => '${finalLevelOneStringArray[2]}',
-            'uCash' => '${finalLevelOneStringArray[3]}',
-         #if(finalLevelOneStringArray[4] == "0")
-            'unlock' => array(),
-         #else
-            'unlock' => array(finalLevelOneStringArray[4]),
-         #end
-            'unitPrice' => '${finalLevelOneStringArray[5]}',
-            'times' => '${finalLevelOneStringArray[6]}',
-            'uLevel' => '${finalLevelOneStringArray[7]}',
+            #for(HashMap levelOneInfo : finalLevelOneList)
+                #if(levelOneInfo.key == "unclock")
+                    #if(levelOneInfo.value == "0")
+                        'unlock' => array(),
+                    #else 
+                        'unlock' => array(levelOneInfo.value),
+                    #end
+                #else
+                    '${levelOneInfo.key}' => '${levelOneInfo.value}',
+                #end
+            #end
         ),
-        #for(String[] requiredItem : levelTwoList)
-        '${requiredItem[0]}' => array(
-            'requireItemId' => '${requiredItem[0]}',
-            'obtainType' => '${requiredItem[1]}',
-            'requireNum' => '${requiredItem[2]}',
-            'requireItemCash' => '${requiredItem[3]}',
-            'requireItemGold' => '${requiredItem[4]}',
-        ),
+        #for(HashMap requiredItem : levelTwoList)
+            #set(HashMap requiredItemInfo = requiredItem[for.index])
+            '${requiredItemInfo["require_item_id"]}' => array(
+                #for(HashMap conditionInfo : requiredItem)
+                    '${conditionInfo.key}' => '${conditionInfo.value}',
+                #end
+            ),
         #end
     ),
 #end

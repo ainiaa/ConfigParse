@@ -348,11 +348,10 @@ public class FileProcessor {
 
     public static void initFileMapping() {
         fileMapping = new HashMap< String, Map>();
-        
+
         Map mapping = new HashMap();
         mapping.put("fileName", "t图腾.xls");
-        
-        
+
 //        fileMapping.put("TOTEM", "t图腾.xls");
 //        fileMapping.put("UPGRADE_BUILDING", "j建筑升级.xls");
 //        fileMapping.put("BIGPACK", "d大礼包.xls");
@@ -380,7 +379,6 @@ public class FileProcessor {
     public static Map fieldMapping(String[] columnNames) {
         int columnCount = columnNames.length;
         Map mapping = new HashMap();
-        int maxLevel = 0;//最大分层数
         for (int column = 0; column < columnCount; column++) {
             String columnName = columnNames[column];
             String[] strArr = columnName.split("[*#]");//http://hi.baidu.com/jszhangdaxu/item/e808680d99501b8d03ce1b13
@@ -402,32 +400,53 @@ public class FileProcessor {
             columnInfo.put("prefixStr", prefixStr);//当前column 的列前缀
             columnInfo.put("column", column);//当前column
             mapping.put(column, columnInfo);
-            if (prefixCount > maxLevel) {
-                maxLevel = prefixCount;
-                List levelMappingList;
-                if (mapping.containsKey("levelDistribution")) {
-                    levelMappingList = (ArrayList) mapping.get("levelDistribution");
-                } else {
-                    levelMappingList = new ArrayList();
-                    levelMappingList.add("init Level");
-                }
+            HashMap levelMappingMap;
+            if (mapping.containsKey("levelDistribution")) {
+                levelMappingMap = (HashMap) mapping.get("levelDistribution");
+            } else {
+                levelMappingMap = new HashMap();
+            }
+            if (levelMappingMap.containsKey(prefixStr)) {
+                Map levelDistributionLH;
+                levelDistributionLH = (Map) levelMappingMap.get(prefixStr);
+                levelDistributionLH.put("high", column);
+                levelMappingMap.put(prefixStr, levelDistributionLH);
+                mapping.put("levelDistribution", levelMappingMap);
+            } else {
                 Map levelDistributionLH = new HashMap();
                 levelDistributionLH.put("low", column);
                 levelDistributionLH.put("high", column);
-                levelMappingList.add(maxLevel, levelDistributionLH);
-                mapping.put("levelDistribution", levelMappingList);
-            } else {
-                Map levelDistributionLH;
-                List levelMappingList;
-                levelMappingList = (ArrayList) mapping.get("levelDistribution");
-                levelDistributionLH = (Map) levelMappingList.get(maxLevel);
-                levelDistributionLH.put("high", column);
-                levelMappingList.set(maxLevel, levelDistributionLH);
-                mapping.put("levelDistribution", levelMappingList);
+                levelMappingMap.put(prefixStr, levelDistributionLH);
+                mapping.put("levelDistribution", levelMappingMap);
             }
         }
-        mapping.put("maxLevel", maxLevel);
-
+        /*
+         if (prefixCount > maxLevel) {
+         maxLevel = prefixCount;
+         List levelMappingList;
+         if (mapping.containsKey("levelDistribution")) {
+         levelMappingList = (ArrayList) mapping.get("levelDistribution");
+         } else {
+         levelMappingList = new ArrayList();
+         levelMappingList.add("init Level");
+         }
+         Map levelDistributionLH = new HashMap();
+         levelDistributionLH.put("low", column);
+         levelDistributionLH.put("high", column);
+         levelMappingList.add(maxLevel, levelDistributionLH);
+         mapping.put("levelDistribution", levelMappingList);
+         } else {
+         Map levelDistributionLH;
+         List levelMappingList;
+         levelMappingList = (ArrayList) mapping.get("levelDistribution");
+         levelDistributionLH = (Map) levelMappingList.get(maxLevel);
+         levelDistributionLH.put("high", column);
+         levelMappingList.set(maxLevel, levelDistributionLH);
+         mapping.put("levelDistribution", levelMappingList);
+         }
+         }
+         mapping.put("maxLevel", maxLevel);
+         */
         return mapping;
     }
 }
