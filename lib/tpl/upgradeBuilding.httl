@@ -18,18 +18,22 @@
 *          'uLevel' => 1,//需要达到的等级
 *          'totalGold' => 30,//快速完成需要的花费的gold数量
 *          'nextLvItemId' => 14,//下级ID
-*          'unlock' => array(1572, 1573),//解锁物品id*          'unitPrice' => 2,//解锁单价*          'times'  => 2//倍数*      ),
+*          'unlock' => array(1572, 1573),//解锁物品id*          
+*          'unitPrice' => 2,//解锁单价*          
+*          'times'  => 2//倍数*      
+*      ),
 *  ),
 */
 $J7CONFIG['upgradeBuildingCfg'] = array(
 #set(List finalInfo)
 #for(HashMap atomInfo : finalInfo)
-    #set(HashMap levelZeroList = atomInfo["*"], HashMap levelOneList = atomInfo["**"], HashMap levelTwoList = atomInfo["***"], HashMap finalLevelOneList = levelOneList["0"])
-    #set(HashMap levelZeroInfo = levelZeroList["0"], String iid=levelZeroInfo["iId"])
+    #set(HashMap levelZeroList = atomInfo["*"], HashMap levelOneList = atomInfo["**"], HashMap levelTwoList = atomInfo["***"])
+    #set(HashMap finalLevelZeroList = levelZeroList[0], HashMap finalLevelOneList = levelOneList[0]) 
+    #set(String iid=finalLevelZeroList["iId"])
     '${iid}' => array(
         'virtual' => array(
-            #for(HashMap levelOneInfo : finalLevelOneList)
-                #if(levelOneInfo.key == "unclock")
+            #for(levelOneInfo : finalLevelOneList)
+                #if(levelOneInfo.key == "unlock")
                     #if(levelOneInfo.value == "0")
                         'unlock' => array(),
                     #else 
@@ -40,13 +44,16 @@ $J7CONFIG['upgradeBuildingCfg'] = array(
                 #end
             #end
         ),
-        #for(HashMap requiredItem : levelTwoList)
-            #set(HashMap requiredItemInfo = requiredItem[for.index])
-            '${requiredItemInfo["require_item_id"]}' => array(
-                #for(HashMap conditionInfo : requiredItem)
-                    '${conditionInfo.key}' => '${conditionInfo.value}',
+        #set(int levelTwoListCount = levelTwoList.size())
+        #for(levelTowListIndex : 0..levelTwoListCount)
+            #set(HashMap finalLevelTowItem = levelTwoList[levelTowListIndex])
+            #if(finalLevelTowItem["require_item_id"])
+                '${finalLevelTowItem["require_item_id"]}' => array(
+                #for(requiredItemInfo : finalLevelTowItem)
+                    '${requiredItemInfo.key}' => '${requiredItemInfo.value}',
                 #end
-            ),
+                ),
+            #end
         #end
     ),
 #end

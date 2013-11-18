@@ -79,9 +79,43 @@ public class DataParse {
             latestRowData = new String[itemExtendLangModel.length];
             atom = new HashMap();
         }
+        
+        Set set = levelDistribution.keySet();
+        Iterator it = set.iterator();
+        while (it.hasNext()) {
+            String prefixStr= (String) it.next();
+            HashMap levelDistributionLH = (HashMap)levelDistribution.get(prefixStr);
+            //String prefixStr = entry.getKey();
+            int low = (Integer) levelDistributionLH.get("low");
+            int high = (Integer) levelDistributionLH.get("high");
+            HashMap currentLevelConent;
+            int currentLevelConentCount;
+            if (atom.containsKey(prefixStr)) {//
+                currentLevelConent = (HashMap) atom.get(prefixStr);
+                currentLevelConentCount = currentLevelConent.size();
+            } else {
+                currentLevelConent = new HashMap();
+                currentLevelConentCount = 0;
+            }
+
+            if (!content[low].equals(latestRowData[low])) {
+                int len = high - low + 1;
+                String[] tmpContent = new String[len];
+                String[] tmpKey = new String[len];
+                System.arraycopy(content, low, tmpContent, 0, len);
+                System.arraycopy(itemExtendLangModel, low, tmpKey, 0, len);
+                HashMap finalContent = new HashMap();
+                for (int i = 0; i < len; i++) {
+                    finalContent.put(tmpKey[i], tmpContent[i]);
+                }
+                currentLevelConent.put(currentLevelConentCount, finalContent);
+                atom.put(prefixStr, currentLevelConent);
+            }
+        }
+        
         /**
          * * 3.把一个map对象放到放到entry里，然后根据entry同时得到key和值
-         */
+        
         Set set = levelDistribution.entrySet();
         Iterator it = set.iterator();
         while (it.hasNext()) {
@@ -113,26 +147,25 @@ public class DataParse {
                 currentLevelConent.put(currentLevelConentCount, finalContent);
                 atom.put(prefixStr, currentLevelConent);
             }
-            /*
-             ArrayList currentLevelConent;
-             int currentLevelConentCount;
-             if (atom.containsKey(prefixStr)) {//
-             currentLevelConent = (ArrayList) atom.get(prefixStr);
-             currentLevelConentCount = currentLevelConent.size();
-             } else {
-             currentLevelConent = new ArrayList();
-             currentLevelConentCount = 0;
-             }
-
-             if (!content[low].equals(latestRowData[low])) {
-             int len = high - low + 1;
-             String[] tmp = new String[len];
-             System.arraycopy(content, low, tmp, 0, len);
-             currentLevelConent.add(currentLevelConentCount, tmp);
-             atom.put(prefixStr, currentLevelConent);
-             }
-             */
+//             ArrayList currentLevelConent;
+//             int currentLevelConentCount;
+//             if (atom.containsKey(prefixStr)) {//
+//             currentLevelConent = (ArrayList) atom.get(prefixStr);
+//             currentLevelConentCount = currentLevelConent.size();
+//             } else {
+//             currentLevelConent = new ArrayList();
+//             currentLevelConentCount = 0;
+//             }
+//
+//             if (!content[low].equals(latestRowData[low])) {
+//             int len = high - low + 1;
+//             String[] tmp = new String[len];
+//             System.arraycopy(content, low, tmp, 0, len);
+//             currentLevelConent.add(currentLevelConentCount, tmp);
+//             atom.put(prefixStr, currentLevelConent);
+//             }
         }
+        */
         latestRowData = content;
 
         if (isLatestRow) {//最后一次调用
