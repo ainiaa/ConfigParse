@@ -4,8 +4,6 @@
  */
 package configparse;
 
-import java.util.*;
-
 /**
  *
  * @author Administrator

@@ -73,7 +73,7 @@ public class FileProcessor {
     /**
      * 判断是否为 number类型
      *
-     * @param String str 需要判断类型的字符串
+     * @param str
      * @return
      */
     public static boolean isNumeric(String str) {
@@ -89,7 +89,7 @@ public class FileProcessor {
     /**
      * 格式化时间
      *
-     * @param Cell formatCell
+     * @param formatCell
      * @return
      */
     public static String formatTime(Cell formatCell) {
@@ -106,10 +106,34 @@ public class FileProcessor {
     }
 
     /**
+     * 获得指定worksheet名称的顺序
+     *
+     * @param filePath
+     * @param desSheetName
+     * @return String
+     * @throws IOException
+     * @throws BiffException
+     */
+    public static int getSheetIndexBySheetName(String filePath, String desSheetName) throws IOException, BiffException {
+        Workbook workbook = Workbook.getWorkbook(new File(filePath));
+        String[] sheetNames = workbook.getSheetNames();
+        int sheetIndex = 0;
+        int sheetNamesLen = sheetNames.length;
+        for (int i = 0; i < sheetNamesLen; i++) {
+            String sheetName = sheetNames[sheetIndex];
+            if (sheetName.equals(desSheetName)) {
+                sheetIndex = i;
+                break;
+            }
+        }
+        return sheetIndex;
+    }
+
+    /**
      * 获得指定worksheet的名称
      *
-     * @param String filePath 文件路径
-     * @param int sheetIndex worksheet索引
+     * @param filePath
+     * @param sheetIndex
      * @return String
      * @throws IOException
      * @throws BiffException
@@ -124,7 +148,7 @@ public class FileProcessor {
     /**
      * 获得指定excel文件的worksheet数量
      *
-     * @param String filePath
+     * @param filePath
      * @return int
      * @throws IOException
      * @throws BiffException
@@ -138,7 +162,7 @@ public class FileProcessor {
     /**
      * 加载setting文件
      *
-     * @param String file_path
+     * @param file_path
      */
     public static void loadSetting(String file_path) {
         File f = new File(file_path);
@@ -181,9 +205,9 @@ public class FileProcessor {
     /**
      * 解析excel文件
      *
-     * @param String filePath 文件路径
-     * @param int sheetNum work sheet 索引
-     * @param boolean reverse 是否需要reverse所得二维数组
+     * @param  filePath 文件路径
+     * @param  sheetNum work sheet 索引
+     * @param  reverse 是否需要reverse所得二维数组
      * @return array[][]
      * @throws IOException
      * @throws BiffException
@@ -221,7 +245,7 @@ public class FileProcessor {
     /**
      * 解析excel文件
      *
-     * @param String filePath filePath 文件路径
+     * @param  filePath filePath 文件路径
      * @return array[][]
      * @throws IOException
      * @throws BiffException
@@ -270,9 +294,9 @@ public class FileProcessor {
     /**
      * 将指定的字符串写入到指定的文件中
      *
-     * @param String contents 将要写入文件的内容字符串
-     * @param String descFile 将要写入文件的路径
-     * @param String encoding 文件编码
+     * @param  contents 将要写入文件的内容字符串
+     * @param  descFile 将要写入文件的路径
+     * @param  encoding 文件编码
      * @throws UnsupportedEncodingException
      * @throws FileNotFoundException
      * @throws IOException
@@ -307,9 +331,9 @@ public class FileProcessor {
     /**
      * 字符串替换功能
      *
-     * @param String strSource 将要被替换的字符串
-     * @param String strFrom 需要被替换的字符串
-     * @param String strTo
+     * @param  strSource 将要被替换的字符串
+     * @param  strFrom 需要被替换的字符串
+     * @param  strTo
      * @return
      */
     public static String replace(String strSource, String strFrom, String strTo) {
@@ -339,7 +363,7 @@ public class FileProcessor {
     /**
      * 显示错误信息
      *
-     * @param Exception ex
+     * @param ex
      */
     public static void showMessageDialogMessage(Exception ex) {
         String exMsg = ex.toString();

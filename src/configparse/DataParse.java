@@ -36,6 +36,10 @@ public class DataParse {
         }
     }
 
+    public static void getTemplateConfig() {
+
+    }
+
     /**
      *
      * @param content
@@ -79,43 +83,42 @@ public class DataParse {
             latestRowData = new String[itemExtendLangModel.length];
             atom = new HashMap();
         }
-        
-        Set set = levelDistribution.keySet();
-        Iterator it = set.iterator();
-        while (it.hasNext()) {
-            String prefixStr= (String) it.next();
-            HashMap levelDistributionLH = (HashMap)levelDistribution.get(prefixStr);
-            //String prefixStr = entry.getKey();
-            int low = (Integer) levelDistributionLH.get("low");
-            int high = (Integer) levelDistributionLH.get("high");
-            HashMap currentLevelConent;
-            int currentLevelConentCount;
-            if (atom.containsKey(prefixStr)) {//
-                currentLevelConent = (HashMap) atom.get(prefixStr);
-                currentLevelConentCount = currentLevelConent.size();
-            } else {
-                currentLevelConent = new HashMap();
-                currentLevelConentCount = 0;
-            }
+        /*
+         Set set = levelDistribution.keySet();
+         Iterator it = set.iterator();
+         while (it.hasNext()) {
+         String prefixStr= (String) it.next();
+         HashMap levelDistributionLH = (HashMap)levelDistribution.get(prefixStr);
+         int low = (Integer) levelDistributionLH.get("low");
+         int high = (Integer) levelDistributionLH.get("high");
+         HashMap currentLevelConent;
+         int currentLevelConentCount;
+         if (atom.containsKey(prefixStr)) {//
+         currentLevelConent = (HashMap) atom.get(prefixStr);
+         currentLevelConentCount = currentLevelConent.size();
+         } else {
+         currentLevelConent = new HashMap();
+         currentLevelConentCount = 0;
+         }
 
-            if (!content[low].equals(latestRowData[low])) {
-                int len = high - low + 1;
-                String[] tmpContent = new String[len];
-                String[] tmpKey = new String[len];
-                System.arraycopy(content, low, tmpContent, 0, len);
-                System.arraycopy(itemExtendLangModel, low, tmpKey, 0, len);
-                HashMap finalContent = new HashMap();
-                for (int i = 0; i < len; i++) {
-                    finalContent.put(tmpKey[i], tmpContent[i]);
-                }
-                currentLevelConent.put(currentLevelConentCount, finalContent);
-                atom.put(prefixStr, currentLevelConent);
-            }
-        }
-        
+         if (!content[low].equals(latestRowData[low])) {
+         int len = high - low + 1;
+         String[] tmpContent = new String[len];
+         String[] tmpKey = new String[len];
+         System.arraycopy(content, low, tmpContent, 0, len);
+         System.arraycopy(itemExtendLangModel, low, tmpKey, 0, len);
+         HashMap finalContent = new HashMap();
+         for (int i = 0; i < len; i++) {
+         finalContent.put(tmpKey[i], tmpContent[i]);
+         }
+         currentLevelConent.put(currentLevelConentCount, finalContent);
+         atom.put(prefixStr, currentLevelConent);
+         }
+         }
+         */
         /**
          * * 3.把一个map对象放到放到entry里，然后根据entry同时得到key和值
-        
+         */
         Set set = levelDistribution.entrySet();
         Iterator it = set.iterator();
         while (it.hasNext()) {
@@ -147,25 +150,8 @@ public class DataParse {
                 currentLevelConent.put(currentLevelConentCount, finalContent);
                 atom.put(prefixStr, currentLevelConent);
             }
-//             ArrayList currentLevelConent;
-//             int currentLevelConentCount;
-//             if (atom.containsKey(prefixStr)) {//
-//             currentLevelConent = (ArrayList) atom.get(prefixStr);
-//             currentLevelConentCount = currentLevelConent.size();
-//             } else {
-//             currentLevelConent = new ArrayList();
-//             currentLevelConentCount = 0;
-//             }
-//
-//             if (!content[low].equals(latestRowData[low])) {
-//             int len = high - low + 1;
-//             String[] tmp = new String[len];
-//             System.arraycopy(content, low, tmp, 0, len);
-//             currentLevelConent.add(currentLevelConentCount, tmp);
-//             atom.put(prefixStr, currentLevelConent);
-//             }
         }
-        */
+
         latestRowData = content;
 
         if (isLatestRow) {//最后一次调用
@@ -173,51 +159,6 @@ public class DataParse {
         }
     }
 
-    /*
-     public static void parseRow(String[] content, String[] itemExtendLangModel, Map fieldMapping, boolean isLatestRow) {
-     ArrayList levelDistribution = (ArrayList) fieldMapping.get("levelDistribution");
-     if (latestRowData == null) {
-     latestRowData = new String[itemExtendLangModel.length];
-     }
-
-     if (!content[0].equals(latestRowData[0]) || atom == null) {
-     if (atom != null) {
-     finalInfo.add(atom);
-     }
-     latestRowData = new String[itemExtendLangModel.length];
-     atom = new HashMap();
-     }
-
-     for (int i = 1, size = levelDistribution.size(); i < size; i++) {//不计数第0个
-     Map levelDistributionLH = (Map) levelDistribution.get(i);
-     String prefixStr = "";
-     int low = (Integer) levelDistributionLH.get("low");
-     int high = (Integer) levelDistributionLH.get("high");
-     ArrayList currentLevelConent;
-     int currentLevelConentCount;
-     if (atom.containsKey(i)) {//
-     currentLevelConent = (ArrayList) atom.get(i);
-     currentLevelConentCount = currentLevelConent.size();
-     } else {
-     currentLevelConent = new ArrayList();
-     currentLevelConentCount = 0;
-     }
-
-     if (!content[low].equals(latestRowData[low])) {
-     int len = high - low + 1;
-     String[] tmp = new String[len];
-     System.arraycopy(content, low, tmp, 0, len);
-     currentLevelConent.add(currentLevelConentCount, tmp);
-     atom.put(i, currentLevelConent);
-     }
-     }
-     latestRowData = content;
-
-     if (isLatestRow) {//最后一次调用
-     finalInfo.add(atom);
-     }
-     }
-     */
     public static Map<String, Object> parameters;
     public static Properties properties;
     public static Engine engine;
@@ -234,7 +175,7 @@ public class DataParse {
                 engine = Engine.getEngine(properties);
                 tpl = engine.getTemplate(tplFileName);
             }
-            
+
             parameters.put("finalInfo", finalInfo);
 
             Calendar calendar = Calendar.getInstance();
