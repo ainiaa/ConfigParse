@@ -130,6 +130,41 @@ public class FileProcessor {
     }
 
     /**
+     *
+     * @param filePath
+     * @return
+     */
+    public static HashMap getFileConfigInfo(String filePath) {
+        HashMap<String, HashMap> configHashMap = new HashMap<String, HashMap>();
+        try {
+            int configSheetIndex = getSheetIndexBySheetName(filePath, "parsecfg");
+            String[][] configInfoString = parseXls(filePath, configSheetIndex, true);
+            int rowCount = configInfoString.length;
+            for (int row = 1; row < rowCount; row++) {
+                String[] rowInfo = configInfoString[row];
+                if (rowInfo.length == 3 && !rowInfo[0].isEmpty() && !rowInfo[1].isEmpty() && !rowInfo[2].isEmpty()) {
+                    String sheetName = rowInfo[0];
+                    String cfgKey = rowInfo[1];
+                    String cfgValue = rowInfo[2];
+                    HashMap cfgInfo;
+                    if (configHashMap.containsKey(sheetName)) {
+                        cfgInfo = configHashMap.get(sheetName);
+                    } else {
+                        cfgInfo = new HashMap();
+                    }
+                    cfgInfo.put(cfgKey, cfgValue);
+                    configHashMap.put(sheetName, cfgInfo);
+                }
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FileProcessor.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (BiffException ex) {
+            Logger.getLogger(FileProcessor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return configHashMap;
+    }
+
+    /**
      * 获得指定worksheet的名称
      *
      * @param filePath
@@ -205,9 +240,9 @@ public class FileProcessor {
     /**
      * 解析excel文件
      *
-     * @param  filePath 文件路径
-     * @param  sheetNum work sheet 索引
-     * @param  reverse 是否需要reverse所得二维数组
+     * @param filePath 文件路径
+     * @param sheetNum work sheet 索引
+     * @param reverse 是否需要reverse所得二维数组
      * @return array[][]
      * @throws IOException
      * @throws BiffException
@@ -245,7 +280,7 @@ public class FileProcessor {
     /**
      * 解析excel文件
      *
-     * @param  filePath filePath 文件路径
+     * @param filePath filePath 文件路径
      * @return array[][]
      * @throws IOException
      * @throws BiffException
@@ -294,9 +329,9 @@ public class FileProcessor {
     /**
      * 将指定的字符串写入到指定的文件中
      *
-     * @param  contents 将要写入文件的内容字符串
-     * @param  descFile 将要写入文件的路径
-     * @param  encoding 文件编码
+     * @param contents 将要写入文件的内容字符串
+     * @param descFile 将要写入文件的路径
+     * @param encoding 文件编码
      * @throws UnsupportedEncodingException
      * @throws FileNotFoundException
      * @throws IOException
@@ -331,9 +366,9 @@ public class FileProcessor {
     /**
      * 字符串替换功能
      *
-     * @param  strSource 将要被替换的字符串
-     * @param  strFrom 需要被替换的字符串
-     * @param  strTo
+     * @param strSource 将要被替换的字符串
+     * @param strFrom 需要被替换的字符串
+     * @param strTo
      * @return
      */
     public static String replace(String strSource, String strFrom, String strTo) {
