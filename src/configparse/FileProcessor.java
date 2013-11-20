@@ -120,7 +120,7 @@ public class FileProcessor {
         int sheetIndex = 0;
         int sheetNamesLen = sheetNames.length;
         for (int i = 0; i < sheetNamesLen; i++) {
-            String sheetName = sheetNames[sheetIndex];
+            String sheetName = sheetNames[i];
             if (sheetName.equals(desSheetName)) {
                 sheetIndex = i;
                 break;
@@ -134,7 +134,7 @@ public class FileProcessor {
      * @param filePath
      * @return
      */
-    public static HashMap getFileConfigInfo(String filePath) {
+    public static HashMap getFileParseConfigInfo(String filePath) {
         HashMap<String, HashMap> configHashMap = new HashMap<String, HashMap>();
         try {
             int configSheetIndex = getSheetIndexBySheetName(filePath, "parsecfg");
@@ -142,7 +142,7 @@ public class FileProcessor {
             int rowCount = configInfoString.length;
             for (int row = 1; row < rowCount; row++) {
                 String[] rowInfo = configInfoString[row];
-                if (rowInfo.length == 3 && !rowInfo[0].isEmpty() && !rowInfo[1].isEmpty() && !rowInfo[2].isEmpty()) {
+                if (!rowInfo[0].isEmpty()) {
                     String sheetName = rowInfo[0];
                     String cfgKey = rowInfo[1];
                     String cfgValue = rowInfo[2];
@@ -161,6 +161,7 @@ public class FileProcessor {
         } catch (BiffException ex) {
             Logger.getLogger(FileProcessor.class.getName()).log(Level.SEVERE, null, ex);
         }
+        System.out.println(configHashMap.toString());
         return configHashMap;
     }
 
