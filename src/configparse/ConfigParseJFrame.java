@@ -1,6 +1,7 @@
 package configparse;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -552,6 +553,9 @@ public class ConfigParseJFrame extends javax.swing.JFrame {
         this.outputjTextFieldMouseClicked(evt);
     }//GEN-LAST:event_outputjButtonMouseClicked
 
+
+    public static HashMap parseRuleConfig;
+    
     private void parsejButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_parsejButtonMouseClicked
         //功能选择
         String func = "";
@@ -574,6 +578,7 @@ public class ConfigParseJFrame extends javax.swing.JFrame {
         if (!msg.isEmpty()) {
             JOptionPane.showMessageDialog(null, msg, "信息提示", JOptionPane.ERROR_MESSAGE);
         } else {
+            parseRuleConfig = FileProcessor.getFileParseRuleConfigInfo(configFilePath);
             if ("UPGRADE_BUILDING".equals(func)) {//建筑升级相关配置
                 DataParse.transformUpgradeBuildingConfig(configFilePath, func, outputPath);
             }

@@ -49,9 +49,9 @@ public class FileProcessor {
     /**
      * 替换
      *
-     * @param Sheet sheet
-     * @param int i
-     * @param int j
+     * @param sheet
+     * @param i
+     * @param j
      * @return
      */
     public static String getTmpContent(Sheet sheet, int i, int j) {
@@ -134,10 +134,10 @@ public class FileProcessor {
      * @param filePath
      * @return
      */
-    public static HashMap getFileParseConfigInfo(String filePath) {
+    public static HashMap getFileParseRuleConfigInfo(String filePath) {
         HashMap<String, HashMap> configHashMap = new HashMap<String, HashMap>();
         try {
-            int configSheetIndex = getSheetIndexBySheetName(filePath, "parsecfg");
+            int configSheetIndex = getSheetIndexBySheetName(filePath, "parseRuleCfg");
             String[][] configInfoString = parseXls(filePath, configSheetIndex, true);
             int rowCount = configInfoString.length;
             for (int row = 1; row < rowCount; row++) {
@@ -216,7 +216,6 @@ public class FileProcessor {
                 if (!prop.getProperty("configBaseDir", "").isEmpty()) {
                     try {
                         configBaseDir = new String(prop.getProperty("configBaseDir").getBytes("ISO-8859-1"), "UTF-8");
-//                        System.out.println(configBaseDir);
                     } catch (UnsupportedEncodingException ex) {
                         Logger.getLogger(ConfigParseJFrame.class.getName()).log(Level.SEVERE, null, ex);
                         showMessageDialogMessage(ex);
