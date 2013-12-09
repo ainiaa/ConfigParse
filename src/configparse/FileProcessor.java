@@ -480,33 +480,6 @@ public class FileProcessor {
                 mapping.put("levelDistribution", levelMappingMap);
             }
         }
-        /*
-         if (prefixCount > maxLevel) {
-         maxLevel = prefixCount;
-         List levelMappingList;
-         if (mapping.containsKey("levelDistribution")) {
-         levelMappingList = (ArrayList) mapping.get("levelDistribution");
-         } else {
-         levelMappingList = new ArrayList();
-         levelMappingList.add("init Level");
-         }
-         Map levelDistributionLH = new HashMap();
-         levelDistributionLH.put("low", column);
-         levelDistributionLH.put("high", column);
-         levelMappingList.add(maxLevel, levelDistributionLH);
-         mapping.put("levelDistribution", levelMappingList);
-         } else {
-         Map levelDistributionLH;
-         List levelMappingList;
-         levelMappingList = (ArrayList) mapping.get("levelDistribution");
-         levelDistributionLH = (Map) levelMappingList.get(maxLevel);
-         levelDistributionLH.put("high", column);
-         levelMappingList.set(maxLevel, levelDistributionLH);
-         mapping.put("levelDistribution", levelMappingList);
-         }
-         }
-         mapping.put("maxLevel", maxLevel);
-         */
         return mapping;
     }
 

@@ -4,7 +4,6 @@
  */
 package configparse;
 
-import static configparse.ConfigParseJFrame.parseRuleConfig;
 import httl.*;
 import java.io.*;
 import java.net.InetAddress;
@@ -35,11 +34,6 @@ public class DataParse {
             Logger.getLogger(ConfigParseJFrame.class.getName()).log(Level.SEVERE, null, ex);
             FileProcessor.showMessageDialogMessage(ex);
         }
-    }
-    
-
-    public static void getTemplateConfig() {
-
     }
 
     /**
@@ -85,42 +79,7 @@ public class DataParse {
             latestRowData = new String[itemExtendLangModel.length];
             atom = new HashMap();
         }
-        /*
-         Set set = levelDistribution.keySet();
-         Iterator it = set.iterator();
-         while (it.hasNext()) {
-         String prefixStr= (String) it.next();
-         HashMap levelDistributionLH = (HashMap)levelDistribution.get(prefixStr);
-         int low = (Integer) levelDistributionLH.get("low");
-         int high = (Integer) levelDistributionLH.get("high");
-         HashMap currentLevelConent;
-         int currentLevelConentCount;
-         if (atom.containsKey(prefixStr)) {//
-         currentLevelConent = (HashMap) atom.get(prefixStr);
-         currentLevelConentCount = currentLevelConent.size();
-         } else {
-         currentLevelConent = new HashMap();
-         currentLevelConentCount = 0;
-         }
 
-         if (!content[low].equals(latestRowData[low])) {
-         int len = high - low + 1;
-         String[] tmpContent = new String[len];
-         String[] tmpKey = new String[len];
-         System.arraycopy(content, low, tmpContent, 0, len);
-         System.arraycopy(itemExtendLangModel, low, tmpKey, 0, len);
-         HashMap finalContent = new HashMap();
-         for (int i = 0; i < len; i++) {
-         finalContent.put(tmpKey[i], tmpContent[i]);
-         }
-         currentLevelConent.put(currentLevelConentCount, finalContent);
-         atom.put(prefixStr, currentLevelConent);
-         }
-         }
-         */
-        /**
-         * * 3.把一个map对象放到放到entry里，然后根据entry同时得到key和值
-         */
         Set set = levelDistribution.entrySet();
         Iterator it = set.iterator();
         while (it.hasNext()) {
@@ -206,39 +165,6 @@ public class DataParse {
     }
 
     /**
-     * 解析规则 TODO
-     *
-     * @param atom
-     * @return
-     *
-     * public static String parseDataToString(Map atom, Map fieldMapping) {
-     * String content = ""; try { if (parameters == null) { parameters = new
-     * HashMap<String, Object>(); properties = new Properties(); FileInputStream
-     * fis = new FileInputStream("./httl.properties"); properties.load(fis);
-     * engine = Engine.getEngine(properties); tpl =
-     * engine.getTemplate("/upgradeBuilding.httl"); } ArrayList levelZeroList =
-     * (ArrayList) (atom.get(1)); String[] levelZeroArray = (String[])
-     * (levelZeroList.get(0)); ArrayList levelZeroListFinal = new ArrayList();
-     * for (int i = 0; i < levelZeroArray.length; i++) {
-     * levelZeroListFinal.add(levelZeroArray[i]); }
-     *
-     * ArrayList levelOneList = (ArrayList) (atom.get(2)); String[]
-     * levelOneArray = (String[]) (levelOneList.get(0)); ArrayList
-     * levelOneListFinal = new ArrayList(); for (int i = 0; i <
-     * levelOneArray.length; i++) { levelOneListFinal.add(levelOneArray[i]); }
-     *
-     * ArrayList levelTwoList = (ArrayList) (atom.get(3));
-     *
-     * parameters.put("levelZeroList", levelZeroListFinal);
-     * parameters.put("levelOneList", levelOneListFinal);
-     * parameters.put("levelTwoList", levelTwoList); // parameters.put("atom",
-     * atom); String tmp = (String) tpl.evaluate(parameters); content = tmp;
-     * System.out.println("tmp : " + tmp); } catch (Exception e) {
-     * System.out.println("e : " + e.getMessage()); }
-     *
-     * return content; }
-     */
-    /**
      *
      * @param content
      * @return
@@ -263,53 +189,5 @@ public class DataParse {
         }
 
         return modelNames;
-    }
-
-    public static String parseLevelContent(ArrayList contentList, HashMap rule) {
-        String levelContent = "";
-
-        return levelContent;
-    }
-
-    public static Map getUpgradeBuildingParseRule() {
-        Map<String, Object> map = new HashMap<String, Object>();
-
-        Map<String, String> ruleMap = new HashMap<String, String>();
-
-        String atomRuleBenginWith, atomRuleAtom, atomRuleEndWith;
-        atomRuleBenginWith = "'COLVALUE-iId' => array(\n";
-        atomRuleAtom = "RULEMAPKEY-** ++ RULEMAPKEY-***";
-        atomRuleEndWith = "),";
-        ruleMap.put("startWith", atomRuleBenginWith);
-        ruleMap.put("atom", atomRuleAtom);
-        ruleMap.put("endWith", atomRuleEndWith);
-        map.put("1", ruleMap);
-
-        String virtualRuleBenginWith, virtualRuleAtom, virtualRuleEndWith;
-        virtualRuleBenginWith = "'virtual' => array(\n";
-        virtualRuleAtom = "'COLNAME' => 'COLVALUE'";
-        virtualRuleEndWith = "),";
-        ruleMap.put("startWith", virtualRuleBenginWith);
-        ruleMap.put("atom", virtualRuleAtom);
-        ruleMap.put("endWith", virtualRuleEndWith);
-        map.put("2", ruleMap);
-
-        String requireItemRuleBenginWith, requireItemRuleAtom, requireItemRuleEndWith;
-        requireItemRuleBenginWith = "'COLVALUE-requireItemId' => array(\n";
-        requireItemRuleAtom = "'COLNAME' => 'COLVALUE'";
-        requireItemRuleEndWith = "),";
-        ruleMap.put("startWith", requireItemRuleBenginWith);
-        ruleMap.put("atom", requireItemRuleAtom);
-        ruleMap.put("endWith", requireItemRuleEndWith);
-        map.put("3", ruleMap);
-
-        virtualRuleBenginWith = "$J7CONFIG['upgradeBuildingCfg'] = array(";
-        virtualRuleAtom = "RULEMAPKEY-*";
-        virtualRuleEndWith = "),";
-        ruleMap.put("startWith", virtualRuleBenginWith);
-        ruleMap.put("atom", virtualRuleAtom);
-        ruleMap.put("endWith", virtualRuleEndWith);
-        map.put("dataStruct", ruleMap);
-        return map;
     }
 }
