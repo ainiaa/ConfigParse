@@ -4,6 +4,7 @@
  */
 package configparse;
 
+import static configparse.ConfigParseJFrame.parseRuleConfig;
 import httl.*;
 import java.io.*;
 import java.net.InetAddress;
@@ -23,7 +24,7 @@ public class DataParse {
     public static void transformUpgradeBuildingConfig(String configFilePath, String func, String outputPath) {
         try {
             String[][] upgradeBuildingCfg = FileProcessor.parseXls(configFilePath, 0);
-            String upgradeBuildingCfgString = DataProvider.buildStringFromStringArray(func, 0, upgradeBuildingCfg);
+            String upgradeBuildingCfgString = DataProvider.buildStringFromStringArray(func, 0, upgradeBuildingCfg, "");
             upgradeBuildingCfgString = "<?php\r\n" + upgradeBuildingCfgString;
             File fileOutput = new File(outputPath + "/upgradableBuilding/upgrading_conditions.php");
             FileProcessor.writeToFile(upgradeBuildingCfgString, fileOutput, "UTF-8");
@@ -35,6 +36,7 @@ public class DataParse {
             FileProcessor.showMessageDialogMessage(ex);
         }
     }
+    
 
     public static void getTemplateConfig() {
 

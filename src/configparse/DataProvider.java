@@ -10,10 +10,12 @@ package configparse;
  */
 public class DataProvider {
 
-    public static String buildStringFromStringArray(String func, int sheetNum, String[][] content) {
+    public static String buildStringFromStringArray(String func, int sheetNum, String[][] content, String tplFile) {
         String buildedContent = "";
         if ("UPGRADE_BUILDING".equals(func)) {//建筑升级相关配置
             buildedContent += buildFinalUpgradeBuildingStringFromStringArray(func, sheetNum, content);
+        } else {
+            buildedContent += buildFinalStringFromStringArray(content, tplFile);
         }
         return buildedContent;
     }
@@ -47,6 +49,11 @@ public class DataProvider {
 
     public static String buildFinalUpgradeBuildingStringFromStringArray(String func, int sheetNum, String[][] content, boolean useSingle) {
         String buildedContent = DataParse.parseData(content, "upgradeBuilding.httl");
+        return buildedContent;
+    }
+
+    public static String buildFinalStringFromStringArray(String[][] content, String tplFile) {
+        String buildedContent = DataParse.parseData(content, tplFile);
         return buildedContent;
     }
 

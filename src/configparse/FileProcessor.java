@@ -7,6 +7,7 @@ package configparse;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -508,4 +509,50 @@ public class FileProcessor {
          */
         return mapping;
     }
+
+    public static void transformCommonConfig(String configFilePath, String func, HashMap parseRuleConfig, String outputPath) throws IOException, BiffException {
+        String tempConfigContent = "";
+        /**
+         * * 3.把一个map对象放到放到entry里，然后根据entry同时得到key和值
+         */
+        Set set = parseRuleConfig.entrySet();
+        Iterator it = set.iterator();
+        while (it.hasNext()) {
+            Map.Entry<String, HashMap> entry = (Entry<String, HashMap>) it.next();
+            Map cfgInfo = entry.getValue();
+            String relationSheetIndexStr = (String) cfgInfo.get("relationSheetIndex");
+            String[] relationSheetIndexArray = relationSheetIndexStr.split(",");
+            Arrays.sort(relationSheetIndexArray);
+            int relationSheetIndexArrayCount = relationSheetIndexArray.length;
+            for (int index = 0; index < relationSheetIndexArrayCount; index++) {
+                int sheetIndex = Integer.parseInt(relationSheetIndexArray[index]);
+                String[][] cfg = FileProcessor.parseXls(configFilePath, sheetIndex);
+                String tplNameKey = "relationSheetIndex-" + sheetIndex + "-templateFileName";
+                String tplNameValue = (String) cfgInfo.get(tplNameKey);
+                tempConfigContent += DataProvider.buildStringFromStringArray(func, sheetIndex, cfg, tplNameValue);
+            }
+            String needGenerateFile = (String) cfgInfo.get("needGenerateFile");
+            if (needGenerateFile.equals("1")) {//需要生成file
+                String generateFileName = (String) cfgInfo.get("generateFileName");
+                String fileContentEncoding = (String) cfgInfo.get("generateFileContentEncoding");
+                File fileOutput = new File(outputPath + generateFileName);
+                FileProcessor.writeToFile(tempConfigContent, fileOutput, fileContentEncoding);
+            }
+        }
+
+    }
+
+    public static int[] getSheetIndexArrayWithoutParseRule(String configFilePath) throws IOException, BiffException {
+        int sheetCount = getSheetNumber(configFilePath);
+        int parseRuleSheetIndex = getSheetIndexBySheetName(configFilePath, "parseRuleCfg");
+        int sheetMax = sheetCount - 1;
+        int[] indexArray = new int[sheetMax];
+        for (int index = 0, indexArrayIndex = 0; index < sheetMax; index++) {
+            if (index != parseRuleSheetIndex) {
+                indexArray[indexArrayIndex++] = index;
+            }
+        }
+        return indexArray;
+    }
+
 }

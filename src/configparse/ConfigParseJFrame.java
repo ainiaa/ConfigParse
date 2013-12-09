@@ -1,6 +1,7 @@
 package configparse;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -9,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import jxl.read.biff.BiffException;
 
 
 public class ConfigParseJFrame extends javax.swing.JFrame {
@@ -581,6 +583,14 @@ public class ConfigParseJFrame extends javax.swing.JFrame {
             parseRuleConfig = FileProcessor.getFileParseRuleConfigInfo(configFilePath);
             if ("UPGRADE_BUILDING".equals(func)) {//建筑升级相关配置
                 DataParse.transformUpgradeBuildingConfig(configFilePath, func, outputPath);
+            } else {
+                try {
+                    FileProcessor.transformCommonConfig(configFilePath, func, parseRuleConfig, outputPath);
+                } catch (IOException ex) {
+                    Logger.getLogger(ConfigParseJFrame.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (BiffException ex) {
+                    Logger.getLogger(ConfigParseJFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             JOptionPane.showMessageDialog(null, "转换结束");
             this.dispose();
