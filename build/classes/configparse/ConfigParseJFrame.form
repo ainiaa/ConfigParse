@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="funcbuttonGroup">
+    </Component>
+    <Menu class="javax.swing.JMenuBar" name="jMenuBar">
+      <SubComponents>
+        <Menu class="javax.swing.JMenu" name="filejMenu">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x6587;&#x4ef6;"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="settingjMenuItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x8bbe;&#x7f6e;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="settingjMenuItemMouseClicked"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="editjMenu">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x7f16;&#x8f91;"/>
+          </Properties>
+        </Menu>
+      </SubComponents>
+    </Menu>
+  </NonVisualComponents>
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar"/>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="jLayeredPane" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="operationjPanel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="jLayeredPane" min="-2" pref="342" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="operationjPanel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JLayeredPane" name="jLayeredPane">
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+        <Property name="useNullLayout" type="boolean" value="true"/>
+      </Layout>
+      <SubComponents>
+        <Container class="javax.swing.JPanel" name="funjPanel">
+          <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                <TitledBorder title="&#x89e3;&#x6790;&#x5185;&#x5bb9;"/>
+              </Border>
+            </Property>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="10" y="0" width="390" height="250"/>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="totemjRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="exchangejRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="keyMappingjRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="sapphireExchangejRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="unockFlowerCraftjRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="gardenExpandjRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="divinationExchangeInfojRadioButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="virtualCurrencyjRadioButton" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="upgradeBuildingjRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="tigerItemInfojRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="adsGeneralizejRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="flowerCraftjRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="floralBenchUpgradejRadioButton" min="-2" max="-2" attributes="0"/>
+                                  <Component id="fsGeneralizejRadioButton" min="-2" max="-2" attributes="0"/>
+                                  <Component id="flowerlandSpinjRadioButton" min="-2" max="-2" attributes="0"/>
+                                  <Component id="bigPackjRadioButton" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="floralBenchGroupjRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="divinationInfojRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="slotInfojRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="divinationCommonInfojRadioButton" min="-2" max="-2" attributes="0"/>
+                                  <Component id="itemExtendjRadioButton" min="-2" max="-2" attributes="0"/>
+                                  <Component id="floralBenchGroupMakeListjRadioButton" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="27" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="totemjRadioButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="upgradeBuildingjRadioButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bigPackjRadioButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="exchangejRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="tigerItemInfojRadioButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="flowerlandSpinjRadioButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="keyMappingjRadioButton" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="adsGeneralizejRadioButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="fsGeneralizejRadioButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="sapphireExchangejRadioButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="flowerCraftjRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="floralBenchUpgradejRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="floralBenchGroupjRadioButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="floralBenchGroupMakeListjRadioButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="unockFlowerCraftjRadioButton" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="slotInfojRadioButton" min="-2" pref="27" max="-2" attributes="0"/>
+                                  <Component id="itemExtendjRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="divinationInfojRadioButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="divinationCommonInfojRadioButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="gardenExpandjRadioButton" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="divinationExchangeInfojRadioButton" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="virtualCurrencyjRadioButton" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="32" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JRadioButton" name="totemjRadioButton">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="funcbuttonGroup"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&#x56fe;&#x817e;&#x914d;&#x7f6e;&#x6587;&#x4ef6;"/>
+              </Properties>
+              <BindingProperties>
+                <BindingProperty name="actionCommand" source="funcbuttonGroup" sourcePath="TOTEM" target="totemjRadioButton" targetPath="actionCommand" updateStrategy="0" immediately="false"/>
+              </BindingProperties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="totemjRadioButtonMouseClicked"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="upgradeBuildingjRadioButton">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="funcbuttonGroup"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&#x5efa;&#x7b51;&#x5347;&#x7ea7;"/>
+              </Properties>
+              <BindingProperties>
+                <BindingProperty name="actionCommand" source="funcbuttonGroup" sourcePath="UPGRADE_BUILDING" target="upgradeBuildingjRadioButton" targetPath="actionCommand" updateStrategy="0" immediately="false"/>
+              </BindingProperties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="upgradeBuildingjRadioButtonMouseClicked"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="bigPackjRadioButton">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="funcbuttonGroup"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&#x5927;&#x793c;&#x5305;"/>
+                <Property name="actionCommand" type="java.lang.String" value="BIGPACK"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="bigPackjRadioButtonMouseClicked"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="exchangejRadioButton">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="funcbuttonGroup"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&#x5151;&#x6362;&#x4efb;&#x52a1;"/>
+                <Property name="actionCommand" type="java.lang.String" value="EXCHANGE"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="exchangejRadioButtonMouseClicked"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="tigerItemInfojRadioButton">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="funcbuttonGroup"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&#x5b9e;&#x9a8c;&#x5ba4;&#x79cd;&#x5b50;&#x673a;"/>
+                <Property name="actionCommand" type="java.lang.String" value="TIGERITEMINFO"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tigerItemInfojRadioButtonMouseClicked"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="flowerlandSpinjRadioButton">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="funcbuttonGroup"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&#x6e38;&#x4e50;&#x573a;&#x8001;&#x864e;&#x673a;"/>
+                <Property name="actionCommand" type="java.lang.String" value="FLOWERLAND_SPIN"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="flowerlandSpinjRadioButtonMouseClicked"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="keyMappingjRadioButton">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="funcbuttonGroup"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&#x5173;&#x952e;&#x5b57;&#x6620;&#x5c04;"/>
+                <Property name="actionCommand" type="java.lang.String" value="KEYMAPPING"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="keyMappingjRadioButtonMouseClicked"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="adsGeneralizejRadioButton">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="funcbuttonGroup"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&#x5c0f;&#x8bed;&#x79cd;&#x5e7f;&#x544a;&#x63a8;&#x5e7f;"/>
+                <Property name="actionCommand" type="java.lang.String" value="ADSGENERALIZE"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="adsGeneralizejRadioButtonMouseClicked"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="fsGeneralizejRadioButton">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="funcbuttonGroup"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&#x5c0f;&#x8bed;&#x79cd;&#x82b1;&#x5e97;&#x63a8;&#x5e7f;"/>
+                <Property name="actionCommand" type="java.lang.String" value="FSGENERALIZE"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="fsGeneralizejRadioButtonMouseClicked"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="sapphireExchangejRadioButton">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="funcbuttonGroup"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&#x5b9d;&#x77f3;&#x5151;&#x6362;"/>
+                <Property name="actionCommand" type="java.lang.String" value="SAPPHIREEXCHANGE"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="sapphireExchangejRadioButtonMouseClicked"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="flowerCraftjRadioButton">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="funcbuttonGroup"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&#x82b1;&#x827a;&#x54c1;"/>
+                <Property name="actionCommand" type="java.lang.String" value="FLOWERCRAFT"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="flowerCraftjRadioButtonMouseClicked"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="floralBenchUpgradejRadioButton">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="funcbuttonGroup"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&#x82b1;&#x827a;&#x5236;&#x4f5c;&#x53f0;&#x5347;&#x7ea7;"/>
+                <Property name="actionCommand" type="java.lang.String" value="FLORALBENCHUPRADE"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="floralBenchUpgradejRadioButtonMouseClicked"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="unockFlowerCraftjRadioButton">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="funcbuttonGroup"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&#x82b1;&#x827a;&#x89e3;&#x9501;"/>
+                <Property name="actionCommand" type="java.lang.String" value="UNLOCKFLOWERCRAFT"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="unockFlowerCraftjRadioButtonMouseClicked"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="floralBenchGroupjRadioButton">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="funcbuttonGroup"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&#x82b1;&#x827a;&#x5236;&#x4f5c;&#x53f0;&#x5206;&#x7ec4;"/>
+                <Property name="actionCommand" type="java.lang.String" value="FLORALBENCHGROUP"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="floralBenchGroupjRadioButtonMouseClicked"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="floralBenchGroupMakeListjRadioButton">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="funcbuttonGroup"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&#x5236;&#x4f5c;&#x53f0;&#x5236;&#x4f5c;&#x6e05;&#x5355;"/>
+                <Property name="actionCommand" type="java.lang.String" value="FLORALBENCHMAKELIST"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="floralBenchGroupMakeListjRadioButtonMouseClicked"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="gardenExpandjRadioButton">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="funcbuttonGroup"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&#x540e;&#x82b1;&#x56ed;&#x6269;&#x5730;"/>
+                <Property name="actionCommand" type="java.lang.String" value="GARDENEXPAND"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="gardenExpandjRadioButtonMouseClicked"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="itemExtendjRadioButton">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="funcbuttonGroup"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&#x7269;&#x54c1;&#x6269;&#x5c55;"/>
+                <Property name="actionCommand" type="java.lang.String" value="ITEMEXTEND"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="itemExtendjRadioButtonMouseClicked"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="slotInfojRadioButton">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="funcbuttonGroup"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&#x62c9;&#x9738;"/>
+                <Property name="actionCommand" type="java.lang.String" value="SLOTINFO"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="slotInfojRadioButtonMouseClicked"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="divinationInfojRadioButton">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="funcbuttonGroup"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&#x5360;&#x535c;&#x5854;&#x7f57;&#x724c;"/>
+                <Property name="actionCommand" type="java.lang.String" value="DIVINATION_INFO"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="divinationInfojRadioButtonMouseClicked"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="divinationExchangeInfojRadioButton">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="funcbuttonGroup"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&#x5360;&#x535c;&#x5151;&#x6362;"/>
+                <Property name="actionCommand" type="java.lang.String" value="DIVINATION_EXCHANGE_INFO"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="divinationExchangeInfojRadioButtonMouseClicked"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="virtualCurrencyjRadioButton">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="funcbuttonGroup"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&#x865a;&#x62df;&#x8d27;&#x5e01;"/>
+                <Property name="actionCommand" type="java.lang.String" value="VIRTUAL_CURRENCY"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="virtualCurrencyjRadioButtonMouseClicked"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="divinationCommonInfojRadioButton">
+              <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="funcbuttonGroup"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&#x5360;&#x535c;&#x901a;&#x7528;&#x4fe1;&#x606f;"/>
+                <Property name="actionCommand" type="java.lang.String" value="DIVINATION_COMMON_INFO"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="divinationCommonInfojRadioButtonMouseClicked"/>
+              </Events>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="selectConfgFilejPanel">
+          <Properties>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                <TitledBorder title="&#x9009;&#x62e9;&#x914d;&#x7f6e;&#x6587;&#x4ef6;"/>
+              </Border>
+            </Property>
+          </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="10" y="250" width="390" height="-1"/>
+            </Constraint>
+          </Constraints>
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="outputjLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="configFilejLabel" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="configFilejTextField" min="-2" pref="173" max="-2" attributes="0"/>
+                          <Component id="outputjTextField" min="-2" pref="173" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="configFilejButton" max="32767" attributes="0"/>
+                          <Component id="outputjButton" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="64" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="configFilejLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="configFilejTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="configFilejButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="outputjLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="outputjTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="outputjButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="configFilejLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x914d;&#x7f6e;&#x6587;&#x4ef6;&#xff1a;"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="configFilejTextField">
+              <Properties>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="configBaseDir" type="code"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="configFilejTextFieldMouseClicked"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="configFilejButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x6d4f;&#x89c8;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="configFilejButtonMouseClicked"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="outputjLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x8f93;&#x51fa;&#x76ee;&#x5f55;&#xff1a;"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="outputjTextField">
+              <Properties>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="outputDirectory" type="code"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="outputjTextFieldMouseClicked"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="outputjButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&#x6d4f;&#x89c8;"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="outputjButtonMouseClicked"/>
+              </Events>
+            </Component>
+          </SubComponents>
+        </Container>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="operationjPanel">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="&#x64cd;&#x4f5c;"/>
+          </Border>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
+                  <Component id="parsejButton" min="-2" pref="83" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="closejButton" min="-2" pref="80" max="-2" attributes="0"/>
+                  <EmptySpace pref="120" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="parsejButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="closejButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JButton" name="parsejButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x89e3;&#x6790;"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="parsejButtonMouseClicked"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="closejButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&#x53d6;&#x6d88;"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="closejButtonMouseClicked"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>

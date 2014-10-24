@@ -49,15 +49,14 @@ public class DataParse {
         Map fieldMapping = FileProcessor.fieldMapping(itemExtendLangModel);
         itemExtendLangModel = cleanupModelNames(itemExtendLangModel);
         boolean isLatestRow = false;
+        String finalString = "";
         for (int row = 1; row < rowCount; row++) {//去掉表头
             if (row == rowCount - 1) {
                 isLatestRow = true;
             }
             parseRow(content[row], itemExtendLangModel, fieldMapping, isLatestRow);
         }
-        if (finalInfo.isEmpty()) {
-
-        }
+        
         buildedContent = parseDataToString(tplFileName);
         return buildedContent;
     }
@@ -66,6 +65,61 @@ public class DataParse {
     public static int atomCount = 0;//完整的配置的个数
     public static List finalInfo = new ArrayList();//整理好之后的数据
 
+    
+     public static void parseSingleContent(String[] content, String[] itemExtendLangModel, Map fieldMapping, boolean isLatestRow) {
+        Map levelDistribution = (HashMap) fieldMapping.get("levelDistribution");
+        if (latestRowData == null) {
+            latestRowData = new String[itemExtendLangModel.length];
+        }
+
+        if (!content[0].equals(latestRowData[0]) || atom == null) {
+            if (atom != null) {
+                finalInfo.add(atom);
+            }
+            latestRowData = new String[itemExtendLangModel.length];
+            atom = new HashMap();
+        }
+
+        Set set = levelDistribution.entrySet();
+        Iterator it = set.iterator();
+        while (it.hasNext()) {
+            Map.Entry<String, HashMap> entry = (Entry<String, HashMap>) it.next();
+            Map levelDistributionLH = entry.getValue();
+            String prefixStr = entry.getKey();
+            int low = (Integer) levelDistributionLH.get("low");
+            int high = (Integer) levelDistributionLH.get("high");
+            HashMap currentLevelConent;
+            int currentLevelConentCount;
+            if (atom.containsKey(prefixStr)) {//
+                currentLevelConent = (HashMap) atom.get(prefixStr);
+                currentLevelConentCount = currentLevelConent.size();
+            } else {
+                currentLevelConent = new HashMap();
+                currentLevelConentCount = 0;
+            }
+
+            if (!content[low].equals(latestRowData[low])) {
+                int len = high - low + 1;
+                String[] tmpContent = new String[len];
+                String[] tmpKey = new String[len];
+                System.arraycopy(content, low, tmpContent, 0, len);
+                System.arraycopy(itemExtendLangModel, low, tmpKey, 0, len);
+                HashMap finalContent = new HashMap();
+                for (int i = 0; i < len; i++) {
+                    finalContent.put(tmpKey[i], tmpContent[i]);
+                }
+                currentLevelConent.put(currentLevelConentCount, finalContent);
+                atom.put(prefixStr, currentLevelConent);
+            }
+        }
+
+        latestRowData = content;
+
+        if (isLatestRow) {//最后一次调用
+            finalInfo.add(atom);
+        }
+    }
+    
     public static void parseRow(String[] content, String[] itemExtendLangModel, Map fieldMapping, boolean isLatestRow) {
         Map levelDistribution = (HashMap) fieldMapping.get("levelDistribution");
         if (latestRowData == null) {
@@ -149,8 +203,8 @@ public class DataParse {
             String ip, address;
             InetAddress addr;
             addr = InetAddress.getLocalHost();
-            ip = addr.getHostAddress().toString();//获得本机IP　　
-            address = addr.getHostName().toString();//获得本机名称
+            ip = addr.getHostAddress();//获得本机IP　　
+            address = addr.getHostName();//获得本机名称
             parameters.put("ip", ip);
             parameters.put("address", address);
             String tmp = (String) tpl.evaluate(parameters);
